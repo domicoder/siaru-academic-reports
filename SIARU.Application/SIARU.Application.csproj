@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Interfaces\" />
+    <None Remove="Services\" />
+    <None Remove="DTOs\" />
+    <None Remove="Validators\" />
+    <None Remove="Common\" />
+    <None Remove="DTOs\Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Common\" />
+    <Folder Include="DTOs\Reports\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SIARU.Domain\SIARU.Domain.csproj" />
+  </ItemGroup>
+</Project>
