@@ -1,9 +1,117 @@
-﻿@{
+﻿@using SIARU.Application.Common
+@{
     ViewData["Title"] = "Inicio";
+    var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
 }
 
-<div class="text-center">
-    <h1 class="display-4">SIARU</h1>
-    <p>Sistema Integrado de Información Académica y Reportes Universitarios</p>
+<div class="dashboard-hero">
+    <div class="dashboard-hero-content">
+        <div class="dashboard-badge">Plataforma académica</div>
+        <h1 class="dashboard-title">SIARU</h1>
+        <p class="dashboard-subtitle">
+            Sistema Integrado de Información Académica y Reportes Universitarios.
+        </p>
+        <p class="dashboard-description">
+            Administra la estructura académica, consulta información institucional y genera informes
+            de asignaturas y profesores desde una sola plataforma.
+        </p>
+
+        @if (!isAuthenticated)
+        {
+            <div class="dashboard-actions">
+                <a class="btn app-primary-button" asp-area="Identity" asp-page="/Account/Login">Iniciar sesión</a>
+            </div>
+        }
+    </div>
 </div>
 
+@if (isAuthenticated)
+{
+    <section class="dashboard-section">
+        <div class="dashboard-section-header">
+            <h2 class="dashboard-section-title">Resumen de acceso</h2>
+            <p class="dashboard-section-text">
+                Sesión iniciada como <strong>@(User.Identity?.Name ?? "Usuario")</strong>.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="dashboard-card">
+                    <div class="dashboard-card-body">
+                        <h3 class="dashboard-card-title">Informes</h3>
+                        <p class="dashboard-card-text">
+                            Accede a los reportes académicos disponibles del sistema.
+                        </p>
+                        <a class="btn app-secondary-button" asp-controller="Reports" asp-action="Index">Ver informes</a>
+                    </div>
+                </div>
+            </div>
+
+            @if (User.IsInRole(RoleNames.Administrator) || User.IsInRole(RoleNames.StudentServicesStaff))
+            {
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-body">
+                            <h3 class="dashboard-card-title">Departamentos</h3>
+                            <p class="dashboard-card-text">
+                                Gestiona la base organizacional de la universidad.
+                            </p>
+                            <a class="btn app-secondary-button" asp-controller="Departments" asp-action="Index">Ir a Departamentos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-body">
+                            <h3 class="dashboard-card-title">Áreas de conocimiento</h3>
+                            <p class="dashboard-card-text">
+                                Organiza las áreas académicas asociadas a cada departamento.
+                            </p>
+                            <a class="btn app-secondary-button" asp-controller="KnowledgeAreas" asp-action="Index">Ir a Áreas</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="dashboard-card">
+                        <div class="dashboard-card-body">
+                            <h3 class="dashboard-card-title">Titulaciones</h3>
+                            <p class="dashboard-card-text">
+                                Administra las titulaciones disponibles en el sistema.
+                            </p>
+                            <a class="btn app-secondary-button" asp-controller="DegreePrograms" asp-action="Index">Ir a Titulaciones</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (User.IsInRole(RoleNames.Administrator))
+            {
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="dashboard-card dashboard-card-accent">
+                        <div class="dashboard-card-body">
+                            <h3 class="dashboard-card-title">Administración</h3>
+                            <p class="dashboard-card-text">
+                                Accede a la administración de cuenta y configuración de seguridad.
+                            </p>
+                            <a class="btn app-outline-button" href="/Identity/Account/Manage">Mi cuenta</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+else
+{
+    <section class="dashboard-section">
+        <div class="dashboard-section-header">
+            <h2 class="dashboard-section-title">Acceso requerido</h2>
+            <p class="dashboard-section-text">
+                Para utilizar la plataforma debes iniciar sesión con una cuenta autorizada.
+            </p>
+        </div>
+    </section>
+}

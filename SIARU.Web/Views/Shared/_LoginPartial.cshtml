@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SIARU.Infrastructure.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav app-auth-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var currentUser = await UserManager.GetUserAsync(User);
+        var displayName = currentUser?.Email ?? User.Identity?.Name ?? "Usuario";
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle app-user-menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="app-user-avatar">@displayName.Substring(0, 1).ToUpper()</span>
+                <span class="app-user-text">@displayName</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end app-dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="/Identity/Account/Manage">Mi cuenta</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                    <form class="dropdown-item-form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post">
+                        <button type="submit" class="dropdown-item text-danger">Cerrar sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="btn app-login-button" asp-area="Identity" asp-page="/Account/Login">Iniciar sesión</a>
+        </li>
+    }
+</ul>

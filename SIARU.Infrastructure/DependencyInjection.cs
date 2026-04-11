@@ -33,6 +33,7 @@ public static class DependencyInjection
             })
             .AddEntityFrameworkStores<SiaruDbContext>()
             .AddDefaultTokenProviders();
+            //.AddDefaultUI();
 
         services.Configure<AdminSeedOptions>(
             configuration.GetSection(AdminSeedOptions.SectionName));
