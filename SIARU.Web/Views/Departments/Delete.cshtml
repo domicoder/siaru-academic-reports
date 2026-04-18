@@ -1,0 +1,27 @@
+﻿@model SIARU.Application.DTOs.Departments.DepartmentDetailDto
+
+@{
+    ViewData["Title"] = "Eliminar departamento";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Eliminar departamento</h1>
+    <p class="page-subtitle">Confirma si deseas eliminar este departamento del sistema.</p>
+</div>
+
+<div class="form-card">
+    <p class="mb-3">
+        Estás a punto de eliminar el departamento:
+        <strong>@Model.Name</strong>
+    </p>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn app-outline-button">Cancelar</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SIARU.Application.DTOs.Departments.DepartmentListDto>
+
+@{
+    ViewData["Title"] = "Departamentos";
+}
+
+<div class="page-header d-flex justify-content-between align-items-center flex-wrap gap-3">
+    <div>
+        <h1 class="page-title">Departamentos</h1>
+        <p class="page-subtitle">Gestiona la estructura organizacional base de la universidad.</p>
+    </div>
+
+    <a asp-action="Create" class="btn app-primary-button">Nuevo departamento</a>
+</div>
+
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="2" class="text-center py-4 text-muted">No hay departamentos registrados.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm app-table-button">Ver</a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm app-table-button">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm app-table-button-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

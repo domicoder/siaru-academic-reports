@@ -1,0 +1,33 @@
+﻿@model SIARU.Application.DTOs.Departments.CreateDepartmentDto
+
+@{
+    ViewData["Title"] = "Crear departamento";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Crear departamento</h1>
+    <p class="page-subtitle">Registra un nuevo departamento académico.</p>
+</div>
+
+<div class="form-card">
+    <form asp-action="Create" method="post" novalidate>
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger app-alert mb-4"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control app-form-control" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn app-primary-button">Guardar</button>
+            <a asp-action="Index" class="btn app-outline-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

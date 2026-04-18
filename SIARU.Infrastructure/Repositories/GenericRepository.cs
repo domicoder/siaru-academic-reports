@@ -50,4 +50,9 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     {
         DbSet.Remove(entity);
     }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await Context.SaveChangesAsync();
+    }
 }

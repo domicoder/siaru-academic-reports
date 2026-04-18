@@ -13,6 +13,7 @@
     <None Remove="Validators\" />
     <None Remove="Common\" />
     <None Remove="DTOs\Reports\" />
+    <None Remove="DTOs\Departments\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
@@ -21,6 +22,7 @@
     <Folder Include="Validators\" />
     <Folder Include="Common\" />
     <Folder Include="DTOs\Reports\" />
+    <Folder Include="DTOs\Departments\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIARU.Domain\SIARU.Domain.csproj" />

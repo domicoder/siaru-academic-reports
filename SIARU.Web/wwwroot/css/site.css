@@ -1,4 +1,24 @@
-﻿.container-parent {
+﻿:root {
+    --app-bg: #f4f7fb;
+    --app-surface: #ffffff;
+    --app-surface-soft: #f8fafc;
+    --app-border: #d9e2ec;
+    --app-text: #1f2937;
+    --app-text-muted: #6b7280;
+    --app-primary: #1d4ed8;
+    --app-primary-dark: #1e40af;
+    --app-primary-soft: #dbeafe;
+    --app-success-soft: #ecfdf3;
+    --app-danger-soft: #fff1f2;
+    --app-shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.06);
+    --app-shadow-md: 0 10px 30px rgba(15, 23, 42, 0.10);
+    --app-radius-lg: 18px;
+    --app-radius-md: 14px;
+    --app-radius-sm: 10px;
+    --app-shell-max-width: 1400px;
+}
+
+.container-parent {
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -320,6 +340,7 @@
     margin-bottom: 40px;
 }
 
+/* login/logout module */
 .auth-page {
     display: flex;
     justify-content: center;
@@ -352,3 +373,56 @@
     border-color: #7aa7ff;
     box-shadow: 0 0 0 0.2rem rgba(29, 78, 216, 0.12);
 }
+
+/* department management module with soft delete */
+.table-card,
+.form-card,
+.details-card {
+    background: #ffffff;
+    border: 1px solid rgba(217, 226, 236, 0.9);
+    border-radius: 20px;
+    box-shadow: var(--app-shadow-sm);
+    padding: 1.5rem;
+}
+
+.app-table thead th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+    border-bottom: 1px solid var(--app-border);
+}
+
+.app-table td,
+.app-table th {
+    vertical-align: middle;
+}
+
+.app-table-button,
+.app-table-button-danger {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+}
+
+.app-table-button {
+    background: #eef4ff;
+    border: 1px solid #c7d7ff;
+    color: #1d4ed8;
+}
+
+    .app-table-button:hover {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+
+.app-table-button-danger {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    color: #be123c;
+}
+
+.app-table-button-danger:hover {
+    background: #ffe4e6;
+    color: #9f1239;
+}
+
