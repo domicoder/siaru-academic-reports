@@ -8,10 +8,15 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.LoginPath = "/Identity/Account/Login";
+//    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+//});
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Identity/Account/Login";
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 var app = builder.Build();
