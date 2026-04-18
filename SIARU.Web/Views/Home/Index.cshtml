@@ -4,114 +4,176 @@
     var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
 }
 
-<div class="dashboard-hero">
-    <div class="dashboard-hero-content">
-        <div class="dashboard-badge">Plataforma académica</div>
-        <h1 class="dashboard-title">SIARU</h1>
-        <p class="dashboard-subtitle">
-            Sistema Integrado de Información Académica y Reportes Universitarios.
+<section class="landing-hero">
+    <div class="landing-hero-inner">
+        <div class="landing-hero-copy">
+            <div class="landing-kicker">Plataforma académica</div>
+
+            <h1 class="landing-title">
+                Gestiona la
+                <span>información académica</span>
+            </h1>
+
+            <p class="landing-description">
+                SIARU centraliza asignaturas, profesores, titulaciones y reportes universitarios
+                en una sola plataforma clara, moderna y escalable.
+            </p>
+
+            <div class="landing-actions">
+                @if (!isAuthenticated)
+                {
+                    <a class="btn app-primary-button" href="#">Iniciar sesión</a>
+                }
+                else
+                {
+                    <a class="btn app-primary-button" asp-controller="Reports" asp-action="Index">Ir a informes</a>
+                }
+
+                <a class="btn app-outline-button" asp-controller="Home" asp-action="Index">Explorar plataforma</a>
+            </div>
+        </div>
+
+        <div class="landing-hero-panel">
+            <div class="hero-panel-card hero-panel-card-soft">
+                <span class="hero-panel-label">Módulo</span>
+                <h3>Estructura académica</h3>
+                <p>Departamentos, áreas de conocimiento y titulaciones organizadas de forma centralizada.</p>
+            </div>
+
+            <div class="hero-panel-card hero-panel-card-accent">
+                <span class="hero-panel-label">Informes</span>
+                <h3>Reportes de asignaturas y profesores</h3>
+                <p>Consulta la información académica en vistas listas para imprimir o exportar a PDF.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="landing-grid-section">
+    <div class="section-heading">
+        <span class="section-kicker">Acceso rápido</span>
+        <h2 class="section-title">Explora los módulos principales</h2>
+        <p class="section-text">
+            Una vista inicial más clara para navegar rápidamente por las funciones principales del sistema.
         </p>
-        <p class="dashboard-description">
-            Administra la estructura académica, consulta información institucional y genera informes
-            de asignaturas y profesores desde una sola plataforma.
+    </div>
+
+    <div class="landing-grid">
+        <article class="landing-card landing-card-large">
+            <div class="landing-card-body">
+                <span class="landing-card-label">Estructura</span>
+                <h3>Gestión académica base</h3>
+                <p>
+                    Organiza departamentos, áreas de conocimiento y titulaciones que sirven como
+                    base del sistema.
+                </p>
+                <span class="landing-card-link">Departamentos · Áreas · Titulaciones</span>
+            </div>
+        </article>
+
+        <article class="landing-card landing-card-image">
+            <div class="landing-card-body">
+                <span class="landing-card-label">Asignaturas</span>
+                <h3>Catálogo académico</h3>
+                <p>Consulta y administra la oferta académica, créditos, incompatibilidades y equivalencias.</p>
+            </div>
+        </article>
+
+        <article class="landing-card landing-card-accent">
+            <div class="landing-card-body">
+                <span class="landing-card-label">Informes</span>
+                <h3>Información lista para consulta</h3>
+                <p>Reportes detallados por asignatura y profesor, optimizados para lectura e impresión.</p>
+            </div>
+        </article>
+
+        <article class="landing-card landing-card-image-alt">
+            <div class="landing-card-body">
+                <span class="landing-card-label">Profesores</span>
+                <h3>Docencia y horarios</h3>
+                <p>Visualiza despacho, área, impartición y horarios de consulta por profesor.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="landing-info-section">
+    <div class="landing-info-copy">
+        <span class="section-kicker">Sobre SIARU</span>
+        <h2 class="section-title section-title-narrow">
+            Una plataforma para estructurar y consultar la vida académica universitaria.
+        </h2>
+        <p class="section-text">
+            SIARU sustituye la gestión basada en ficheros por una base de datos relacional,
+            mejorando consistencia, trazabilidad y generación de informes académicos.
         </p>
 
-        @if (!isAuthenticated)
-        {
-            <div class="dashboard-actions">
-                <a class="btn app-primary-button" asp-area="Identity" asp-page="/Account/Login">Iniciar sesión</a>
-            </div>
-        }
+        <ul class="landing-feature-list">
+            <li>Centralización de información académica</li>
+            <li>Mejor integridad y consistencia de datos</li>
+            <li>Consultas rápidas y estructura más clara</li>
+            <li>Base lista para futuras ampliaciones del sistema</li>
+        </ul>
     </div>
-</div>
+
+    <div class="landing-info-side">
+        <div class="info-side-card">
+            <span class="landing-card-label">Estado actual</span>
+            <h3>Base sólida para futuras fases</h3>
+            <p>
+                La plataforma ya prepara la estructura para módulos de asignaturas,
+                profesores, horarios, imparticiones e informes.
+            </p>
+        </div>
+    </div>
+</section>
 
 @if (isAuthenticated)
 {
-    <section class="dashboard-section">
-        <div class="dashboard-section-header">
-            <h2 class="dashboard-section-title">Resumen de acceso</h2>
-            <p class="dashboard-section-text">
+    <section class="landing-auth-section">
+        <div class="section-heading">
+            <span class="section-kicker">Sesión activa</span>
+            <h2 class="section-title">Accesos disponibles</h2>
+            <p class="section-text">
                 Sesión iniciada como <strong>@(User.Identity?.Name ?? "Usuario")</strong>.
             </p>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-md-6 col-xl-4">
-                <div class="dashboard-card">
-                    <div class="dashboard-card-body">
-                        <h3 class="dashboard-card-title">Informes</h3>
-                        <p class="dashboard-card-text">
-                            Accede a los reportes académicos disponibles del sistema.
-                        </p>
-                        <a class="btn app-secondary-button" asp-controller="Reports" asp-action="Index">Ver informes</a>
-                    </div>
+        <div class="dashboard-cards-grid">
+            <div class="dashboard-card">
+                <div class="dashboard-card-body">
+                    <h3 class="dashboard-card-title">Informes</h3>
+                    <p class="dashboard-card-text">Consulta los reportes del sistema.</p>
+                    <a class="btn app-secondary-button" asp-controller="Reports" asp-action="Index">Ver informes</a>
                 </div>
             </div>
 
             @if (User.IsInRole(RoleNames.Administrator) || User.IsInRole(RoleNames.StudentServicesStaff))
             {
-                <div class="col-12 col-md-6 col-xl-4">
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-body">
-                            <h3 class="dashboard-card-title">Departamentos</h3>
-                            <p class="dashboard-card-text">
-                                Gestiona la base organizacional de la universidad.
-                            </p>
-                            <a class="btn app-secondary-button" asp-controller="Departments" asp-action="Index">Ir a Departamentos</a>
-                        </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-body">
+                        <h3 class="dashboard-card-title">Departamentos</h3>
+                        <p class="dashboard-card-text">Gestiona la estructura organizacional universitaria.</p>
+                        <a class="btn app-secondary-button" asp-controller="Departments" asp-action="Index">Ir al módulo</a>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-xl-4">
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-body">
-                            <h3 class="dashboard-card-title">Áreas de conocimiento</h3>
-                            <p class="dashboard-card-text">
-                                Organiza las áreas académicas asociadas a cada departamento.
-                            </p>
-                            <a class="btn app-secondary-button" asp-controller="KnowledgeAreas" asp-action="Index">Ir a Áreas</a>
-                        </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-body">
+                        <h3 class="dashboard-card-title">Áreas de conocimiento</h3>
+                        <p class="dashboard-card-text">Administra la clasificación académica por departamento.</p>
+                        <a class="btn app-secondary-button" asp-controller="KnowledgeAreas" asp-action="Index">Ir al módulo</a>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-xl-4">
-                    <div class="dashboard-card">
-                        <div class="dashboard-card-body">
-                            <h3 class="dashboard-card-title">Titulaciones</h3>
-                            <p class="dashboard-card-text">
-                                Administra las titulaciones disponibles en el sistema.
-                            </p>
-                            <a class="btn app-secondary-button" asp-controller="DegreePrograms" asp-action="Index">Ir a Titulaciones</a>
-                        </div>
+                <div class="dashboard-card">
+                    <div class="dashboard-card-body">
+                        <h3 class="dashboard-card-title">Titulaciones</h3>
+                        <p class="dashboard-card-text">Consulta y administra las titulaciones registradas.</p>
+                        <a class="btn app-secondary-button" asp-controller="DegreePrograms" asp-action="Index">Ir al módulo</a>
                     </div>
                 </div>
             }
-
-            @if (User.IsInRole(RoleNames.Administrator))
-            {
-                <div class="col-12 col-md-6 col-xl-4">
-                    <div class="dashboard-card dashboard-card-accent">
-                        <div class="dashboard-card-body">
-                            <h3 class="dashboard-card-title">Administración</h3>
-                            <p class="dashboard-card-text">
-                                Accede a la administración de cuenta y configuración de seguridad.
-                            </p>
-                            <a class="btn app-outline-button" href="/Identity/Account/Manage">Mi cuenta</a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </section>
-}
-else
-{
-    <section class="dashboard-section">
-        <div class="dashboard-section-header">
-            <h2 class="dashboard-section-title">Acceso requerido</h2>
-            <p class="dashboard-section-text">
-                Para utilizar la plataforma debes iniciar sesión con una cuenta autorizada.
-            </p>
         </div>
     </section>
 }
