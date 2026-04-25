@@ -63,7 +63,24 @@ public class TeachingAssignmentManagementRepository : ITeachingAssignmentManagem
 
     public async Task UpdateAsync(TeachingAssignment originalEntity, TeachingAssignment updatedEntity)
     {
+        var keyChanged =
+            originalEntity.SubjectCode != updatedEntity.SubjectCode ||
+            originalEntity.ProfessorId != updatedEntity.ProfessorId ||
+            originalEntity.AcademicYear != updatedEntity.AcademicYear;
+
+        if (!keyChanged)
+        {
+            originalEntity.SubjectCode = updatedEntity.SubjectCode;
+            originalEntity.ProfessorId = updatedEntity.ProfessorId;
+            originalEntity.AcademicYear = updatedEntity.AcademicYear;
+
+            _context.TeachingAssignments.Update(originalEntity);
+            return;
+        }
+
         _context.TeachingAssignments.Remove(originalEntity);
+        await _context.SaveChangesAsync();
+
         await _context.TeachingAssignments.AddAsync(updatedEntity);
     }
 
