@@ -53,6 +53,12 @@ public class SiaruDbContext : IdentityDbContext<ApplicationUser>
         {
             if (entry.State == EntityState.Deleted)
             {
+                // TeachingAssignment must be physically deleted
+                if (entry.Entity is TeachingAssignment)
+                {
+                    continue;
+                }
+
                 entry.State = EntityState.Modified;
                 entry.Entity.IsDeleted = true;
                 entry.Entity.DeletedAt = utcNow;
