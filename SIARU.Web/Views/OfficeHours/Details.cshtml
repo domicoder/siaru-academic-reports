@@ -1,0 +1,37 @@
+﻿@model SIARU.Application.DTOs.OfficeHours.OfficeHourDetailDto
+
+@{
+    ViewData["Title"] = "Detalle de horario de consulta";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Detalle de horario de consulta</h1>
+    <p class="page-subtitle">Consulta la información del horario seleccionado.</p>
+</div>
+
+<div class="details-card">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Profesor</dt>
+        <dd class="col-sm-9">@Model.ProfessorName</dd>
+
+        <dt class="col-sm-3">Despacho</dt>
+        <dd class="col-sm-9">@Model.ProfessorOffice</dd>
+
+        <dt class="col-sm-3">Área de conocimiento</dt>
+        <dd class="col-sm-9">@Model.KnowledgeAreaName</dd>
+
+        <dt class="col-sm-3">Día</dt>
+        <dd class="col-sm-9">@Model.DayOfWeek</dd>
+
+        <dt class="col-sm-3">Hora de inicio</dt>
+        <dd class="col-sm-9">@Model.StartTime</dd>
+
+        <dt class="col-sm-3">Hora de fin</dt>
+        <dd class="col-sm-9">@Model.EndTime</dd>
+    </dl>
+</div>
+
+<div class="mt-4 d-flex gap-2 flex-wrap">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn app-primary-button">Editar</a>
+    <a asp-action="Index" class="btn app-outline-button">Volver</a>
+</div>

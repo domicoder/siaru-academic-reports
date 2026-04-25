@@ -52,6 +52,7 @@ public static class DependencyInjection
         services.AddScoped<ISubjectManagementRepository, SubjectManagementRepository>();
         services.AddScoped<ISubjectService, SubjectService>();
         services.AddScoped<IProfessorManagementService, ProfessorManagementService>();
+        services.AddScoped<IOfficeHourManagementService, OfficeHourManagementService>();
 
         return services;
     }

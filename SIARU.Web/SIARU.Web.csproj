@@ -37,6 +37,7 @@
     <None Remove="Views\DegreePrograms\" />
     <None Remove="Views\Subjects\" />
     <None Remove="Views\Professors\" />
+    <None Remove="Views\OfficeHours\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Reports\" />
@@ -49,6 +50,7 @@
     <Folder Include="Views\DegreePrograms\" />
     <Folder Include="Views\Subjects\" />
     <Folder Include="Views\Professors\" />
+    <Folder Include="Views\OfficeHours\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.4" />
