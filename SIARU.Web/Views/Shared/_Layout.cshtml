@@ -81,12 +81,12 @@
                             </li>
                         }
 
-                        @if (User.Identity?.IsAuthenticated == true && User.IsInRole(RoleNames.Administrator))
+                        @*@if (User.Identity?.IsAuthenticated == true && User.IsInRole(RoleNames.Administrator))
                         {
                             <li class="nav-item">
                                 <a class="nav-link app-nav-link" href="/Identity/Account/Manage">Administración</a>
                             </li>
-                        }
+                        }*@
                     </ul>
 
                     <partial name="_LoginPartial" />
