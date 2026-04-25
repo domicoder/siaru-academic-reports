@@ -1,0 +1,47 @@
+﻿@model SIARU.Application.DTOs.Professors.CreateProfessorDto
+
+@{
+    ViewData["Title"] = "Crear profesor";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Crear profesor</h1>
+    <p class="page-subtitle">Registra un nuevo profesor en el sistema.</p>
+</div>
+
+<div class="form-card">
+    <form asp-action="Create" method="post" novalidate>
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger app-alert mb-4"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control app-form-control" />
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Office" class="form-label"></label>
+            <input asp-for="Office" class="form-control app-form-control" />
+            <span asp-validation-for="Office" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="KnowledgeAreaId" class="form-label"></label>
+            <select asp-for="KnowledgeAreaId" asp-items="ViewBag.KnowledgeAreas" class="form-select app-form-control">
+                <option value="">-- Selecciona un área de conocimiento --</option>
+            </select>
+            <span asp-validation-for="KnowledgeAreaId" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn app-primary-button">Guardar</button>
+            <a asp-action="Index" class="btn app-outline-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

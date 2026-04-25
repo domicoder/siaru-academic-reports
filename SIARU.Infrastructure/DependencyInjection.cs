@@ -51,6 +51,7 @@ public static class DependencyInjection
         services.AddScoped<IDegreeProgramService, DegreeProgramService>();
         services.AddScoped<ISubjectManagementRepository, SubjectManagementRepository>();
         services.AddScoped<ISubjectService, SubjectService>();
+        services.AddScoped<IProfessorManagementService, ProfessorManagementService>();
 
         return services;
     }

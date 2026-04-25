@@ -17,6 +17,7 @@
     <None Remove="DTOs\KnowledgeAreas\" />
     <None Remove="DTOs\DegreePrograms\" />
     <None Remove="DTOs\Subjects\" />
+    <None Remove="DTOs\Professors\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
@@ -29,6 +30,7 @@
     <Folder Include="DTOs\KnowledgeAreas\" />
     <Folder Include="DTOs\DegreePrograms\" />
     <Folder Include="DTOs\Subjects\" />
+    <Folder Include="DTOs\Professors\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIARU.Domain\SIARU.Domain.csproj" />
