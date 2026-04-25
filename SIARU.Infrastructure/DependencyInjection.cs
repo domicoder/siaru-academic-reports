@@ -9,6 +9,7 @@ using SIARU.Infrastructure.Identity;
 using SIARU.Infrastructure.Persistence;
 using SIARU.Infrastructure.Repositories;
 using SIARU.Infrastructure.Seed;
+using SIARU.Infrastructure.Services;
 
 namespace SIARU.Infrastructure;
 
@@ -46,6 +47,7 @@ public static class DependencyInjection
 
         services.AddScoped<ISubjectReportService, SubjectReportService>();
         services.AddScoped<IProfessorReportService, ProfessorReportService>();
+
         services.AddScoped<IDepartmentService, DepartmentService>();
         services.AddScoped<IKnowledgeAreaService, KnowledgeAreaService>();
         services.AddScoped<IDegreeProgramService, DegreeProgramService>();

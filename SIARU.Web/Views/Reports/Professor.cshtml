@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SIARU.Application.DTOs.Reports.ProfessorReportSearchResultDto>
+
+@{
+    ViewData["Title"] = "Buscar profesor";
+    var term = ViewBag.SearchTerm as string;
+}
+
+<div class="page-header">
+    <h1 class="page-title">Informe por profesor</h1>
+    <p class="page-subtitle">Busca un profesor por nombre o despacho.</p>
+</div>
+
+<div class="form-card mb-4">
+    <form method="get">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-10">
+                <label class="form-label">Buscar</label>
+                <input type="text" name="term" value="@term" class="form-control app-form-control" placeholder="Ejemplo: Ana o AI204" />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn app-primary-button w-100">Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="table-card">
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Despacho</th>
+                    <th>Área</th>
+                    <th class="text-end">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">No se encontraron profesores.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Office</td>
+                            <td>@item.KnowledgeAreaName</td>
+                            <td class="text-end">
+                                <a asp-action="ProfessorDetails" asp-route-id="@item.Id" class="btn btn-sm app-table-button">Ver informe</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

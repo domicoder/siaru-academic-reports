@@ -1,0 +1,98 @@
+﻿@model SIARU.Application.DTOs.Reports.ProfessorReportDto
+
+@{
+    ViewData["Title"] = "Informe de profesor";
+}
+
+<div class="page-header report-page-header">
+    <div>
+        <h1 class="page-title">Informe de profesor</h1>
+        <p class="page-subtitle">Consulta académica detallada.</p>
+    </div>
+    <button class="btn app-outline-button" onclick="window.print()">Imprimir</button>
+</div>
+
+<div class="details-card mb-4 report-section">
+    <h3 class="dashboard-card-title mb-3">Información general</h3>
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Despacho</dt>
+        <dd class="col-sm-9">@Model.Office</dd>
+
+        <dt class="col-sm-3">Área de conocimiento</dt>
+        <dd class="col-sm-9">@Model.KnowledgeAreaName</dd>
+
+        <dt class="col-sm-3">Departamento</dt>
+        <dd class="col-sm-9">@Model.DepartmentName</dd>
+    </dl>
+</div>
+
+<div class="table-card mb-4 report-section">
+    <h3 class="dashboard-card-title mb-3">Horarios de consulta</h3>
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Día</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de fin</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.OfficeHours.Any())
+                {
+                    <tr>
+                        <td colspan="3" class="text-center py-4 text-muted">No hay horarios registrados.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model.OfficeHours)
+                    {
+                        <tr>
+                            <td>@item.DayOfWeek</td>
+                            <td>@item.StartTime</td>
+                            <td>@item.EndTime</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="table-card report-section">
+    <h3 class="dashboard-card-title mb-3">Asignaturas impartidas</h3>
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Asignatura</th>
+                    <th>Año académico</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Subjects.Any())
+                {
+                    <tr>
+                        <td colspan="3" class="text-center py-4 text-muted">No hay imparticiones registradas.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model.Subjects)
+                    {
+                        <tr>
+                            <td>@item.SubjectCode</td>
+                            <td>@item.SubjectName</td>
+                            <td>@item.AcademicYear</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

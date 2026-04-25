@@ -1,0 +1,113 @@
+﻿@model SIARU.Application.DTOs.Reports.SubjectReportDto
+
+@{
+    ViewData["Title"] = "Informe de asignatura";
+}
+
+<div class="page-header report-page-header">
+    <div>
+        <h1 class="page-title">Informe de asignatura</h1>
+        <p class="page-subtitle">Consulta académica detallada.</p>
+    </div>
+    <button class="btn app-outline-button" onclick="window.print()">Imprimir</button>
+</div>
+
+<div class="details-card mb-4 report-section">
+    <h3 class="dashboard-card-title mb-3">Información general</h3>
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Código</dt>
+        <dd class="col-sm-9">@Model.Code</dd>
+
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Curso</dt>
+        <dd class="col-sm-9">@Model.Course</dd>
+
+        <dt class="col-sm-3">Tipo</dt>
+        <dd class="col-sm-9">@Model.Type</dd>
+
+        <dt class="col-sm-3">Créditos teóricos</dt>
+        <dd class="col-sm-9">@Model.TheoreticalCredits</dd>
+
+        <dt class="col-sm-3">Créditos de laboratorio</dt>
+        <dd class="col-sm-9">@Model.LabCredits</dd>
+
+        <dt class="col-sm-3">Límite de admisión</dt>
+        <dd class="col-sm-9">@(Model.AdmissionLimit?.ToString() ?? "No definido")</dd>
+
+        <dt class="col-sm-3">Área de conocimiento</dt>
+        <dd class="col-sm-9">@Model.KnowledgeAreaName</dd>
+
+        <dt class="col-sm-3">Departamento</dt>
+        <dd class="col-sm-9">@Model.DepartmentName</dd>
+    </dl>
+</div>
+
+<div class="table-card mb-4 report-section">
+    <h3 class="dashboard-card-title mb-3">Titulaciones asociadas</h3>
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Titulación</th>
+                    <th>Cuatrimestre</th>
+                    <th>Libre configuración</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.DegreePrograms.Any())
+                {
+                    <tr>
+                        <td colspan="3" class="text-center py-4 text-muted">No hay titulaciones asociadas.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model.DegreePrograms)
+                    {
+                        <tr>
+                            <td>@item.DegreeProgramName</td>
+                            <td>@item.Quadrimester</td>
+                            <td>@(item.IsFreeConfiguration ? "Sí" : "No")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="table-card report-section">
+    <h3 class="dashboard-card-title mb-3">Profesores que imparten la asignatura</h3>
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Profesor</th>
+                    <th>Despacho</th>
+                    <th>Año académico</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Professors.Any())
+                {
+                    <tr>
+                        <td colspan="3" class="text-center py-4 text-muted">No hay imparticiones registradas.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model.Professors)
+                    {
+                        <tr>
+                            <td>@item.ProfessorName</td>
+                            <td>@item.Office</td>
+                            <td>@item.AcademicYear</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

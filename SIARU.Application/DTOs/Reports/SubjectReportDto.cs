@@ -2,19 +2,17 @@
 
 public class SubjectReportDto
 {
-    public string Code { get; set; } = null!;
-    public string Name { get; set; } = null!;
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     public int Course { get; set; }
+    public string Type { get; set; } = string.Empty;
     public decimal TheoreticalCredits { get; set; }
     public decimal LabCredits { get; set; }
-    public string Type { get; set; } = null!;
     public int? AdmissionLimit { get; set; }
 
-    public string KnowledgeArea { get; set; } = null!;
-    public string Department { get; set; } = null!;
+    public string KnowledgeAreaName { get; set; } = string.Empty;
+    public string DepartmentName { get; set; } = string.Empty;
 
-    public List<SubjectDegreeProgramReportDto> DegreePrograms { get; set; } = new();
-    public List<string> Professors { get; set; } = new();
-    public List<string> Incompatibilities { get; set; } = new();
-    public List<string> Equivalencies { get; set; } = new();
+    public List<SubjectReportDegreeProgramDto> DegreePrograms { get; set; } = new();
+    public List<SubjectReportProfessorDto> Professors { get; set; } = new();
 }

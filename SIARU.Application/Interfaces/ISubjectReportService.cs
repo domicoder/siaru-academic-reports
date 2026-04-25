@@ -4,6 +4,6 @@ namespace SIARU.Application.Interfaces;
 
 public interface ISubjectReportService
 {
-    Task<List<(string Code, string Name)>> SearchAsync(string term);
+    Task<List<SubjectReportSearchResultDto>> SearchAsync(string? term);
     Task<SubjectReportDto?> GetByCodeAsync(string code);
 }
