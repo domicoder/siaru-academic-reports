@@ -1,0 +1,22 @@
+﻿@model SIARU.Application.DTOs.DegreePrograms.DegreeProgramDetailDto
+
+@{
+    ViewData["Title"] = "Detalle de titulación";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Detalle de titulación</h1>
+    <p class="page-subtitle">Consulta la información de la titulación seleccionada.</p>
+</div>
+
+<div class="details-card">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Nombre</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+    </dl>
+</div>
+
+<div class="mt-4 d-flex gap-2 flex-wrap">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn app-primary-button">Editar</a>
+    <a asp-action="Index" class="btn app-outline-button">Volver</a>
+</div>

@@ -48,6 +48,7 @@ public static class DependencyInjection
         services.AddScoped<IProfessorReportService, ProfessorReportService>();
         services.AddScoped<IDepartmentService, DepartmentService>();
         services.AddScoped<IKnowledgeAreaService, KnowledgeAreaService>();
+        services.AddScoped<IDegreeProgramService, DegreeProgramService>();
 
         return services;
     }
