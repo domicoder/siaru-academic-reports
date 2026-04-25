@@ -1,0 +1,39 @@
+﻿@model SIARU.Application.DTOs.TeachingAssignments.TeachingAssignmentDetailDto
+
+@{
+    ViewData["Title"] = "Detalle de impartición";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Detalle de impartición</h1>
+    <p class="page-subtitle">Consulta la información de la impartición seleccionada.</p>
+</div>
+
+<div class="details-card">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">Asignatura</dt>
+        <dd class="col-sm-9">@Model.SubjectCode - @Model.SubjectName</dd>
+
+        <dt class="col-sm-3">Profesor</dt>
+        <dd class="col-sm-9">@Model.ProfessorName</dd>
+
+        <dt class="col-sm-3">Despacho</dt>
+        <dd class="col-sm-9">@Model.ProfessorOffice</dd>
+
+        <dt class="col-sm-3">Área de conocimiento</dt>
+        <dd class="col-sm-9">@Model.KnowledgeAreaName</dd>
+
+        <dt class="col-sm-3">Año académico</dt>
+        <dd class="col-sm-9">@Model.AcademicYear</dd>
+    </dl>
+</div>
+
+<div class="mt-4 d-flex gap-2 flex-wrap">
+    <a asp-action="Edit"
+       asp-route-subjectCode="@Model.SubjectCode"
+       asp-route-professorId="@Model.ProfessorId"
+       asp-route-academicYear="@Model.AcademicYear"
+       class="btn app-primary-button">Editar</a>
+
+    <a asp-action="Index" class="btn app-outline-button">Volver</a>
+</div>

@@ -1,0 +1,49 @@
+﻿@model SIARU.Application.DTOs.TeachingAssignments.CreateTeachingAssignmentDto
+
+@{
+    ViewData["Title"] = "Crear impartición";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Crear impartición</h1>
+    <p class="page-subtitle">Registra una nueva relación entre asignatura, profesor y año académico.</p>
+</div>
+
+<div class="form-card">
+    <form asp-action="Create" method="post" novalidate>
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger app-alert mb-4"></div>
+
+        <div class="mb-3">
+            <label asp-for="SubjectCode" class="form-label"></label>
+            <select asp-for="SubjectCode" asp-items="ViewBag.Subjects" class="form-select app-form-control">
+                <option value="">-- Selecciona una asignatura --</option>
+            </select>
+            <span asp-validation-for="SubjectCode" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ProfessorId" class="form-label"></label>
+            <select asp-for="ProfessorId" asp-items="ViewBag.Professors" class="form-select app-form-control">
+                <option value="">-- Selecciona un profesor --</option>
+            </select>
+            <span asp-validation-for="ProfessorId" class="text-danger small"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AcademicYear" class="form-label"></label>
+            <input asp-for="AcademicYear" class="form-control app-form-control" placeholder="Ejemplo: 2025/26" />
+            <span asp-validation-for="AcademicYear" class="text-danger small"></span>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn app-primary-button">Guardar</button>
+            <a asp-action="Index" class="btn app-outline-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

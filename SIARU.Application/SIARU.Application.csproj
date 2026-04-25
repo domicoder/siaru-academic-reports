@@ -19,6 +19,7 @@
     <None Remove="DTOs\Subjects\" />
     <None Remove="DTOs\Professors\" />
     <None Remove="DTOs\OfficeHours\" />
+    <None Remove="DTOs\TeachingAssignments\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
@@ -33,6 +34,7 @@
     <Folder Include="DTOs\Subjects\" />
     <Folder Include="DTOs\Professors\" />
     <Folder Include="DTOs\OfficeHours\" />
+    <Folder Include="DTOs\TeachingAssignments\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIARU.Domain\SIARU.Domain.csproj" />

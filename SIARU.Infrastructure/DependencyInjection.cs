@@ -49,10 +49,16 @@ public static class DependencyInjection
         services.AddScoped<IDepartmentService, DepartmentService>();
         services.AddScoped<IKnowledgeAreaService, KnowledgeAreaService>();
         services.AddScoped<IDegreeProgramService, DegreeProgramService>();
+
         services.AddScoped<ISubjectManagementRepository, SubjectManagementRepository>();
         services.AddScoped<ISubjectService, SubjectService>();
+
         services.AddScoped<IProfessorManagementService, ProfessorManagementService>();
+
         services.AddScoped<IOfficeHourManagementService, OfficeHourManagementService>();
+
+        services.AddScoped<ITeachingAssignmentManagementRepository, TeachingAssignmentManagementRepository>();
+        services.AddScoped<ITeachingAssignmentManagementService, TeachingAssignmentManagementService>();
 
         return services;
     }
