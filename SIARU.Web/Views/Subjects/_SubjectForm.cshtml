@@ -1,4 +1,11 @@
-﻿@model dynamic
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model dynamic
+
+@{
+    var degreeProgramOptions = ViewBag.DegreePrograms as List<SelectListItem> ?? new();
+    var knowledgeAreaOptions = ViewBag.KnowledgeAreas as List<SelectListItem> ?? new();
+    var subjectTypeOptions = ViewBag.SubjectTypes as List<SelectListItem> ?? new();
+}
 
 <div class="mb-3">
     <label for="Code" class="form-label">Código</label>
@@ -18,8 +25,15 @@
 
     <div class="col-md-6 mb-3">
         <label for="KnowledgeAreaId" class="form-label">Área de conocimiento</label>
-        <select name="KnowledgeAreaId" id="KnowledgeAreaId" class="form-select app-form-control" asp-items="ViewBag.KnowledgeAreas">
+        <select name="KnowledgeAreaId" id="KnowledgeAreaId" class="form-select app-form-control">
             <option value="">-- Selecciona un área --</option>
+            @foreach (var option in knowledgeAreaOptions)
+            {
+                var isSelected = option.Value == Convert.ToString(Model.KnowledgeAreaId);
+                <option value="@option.Value" selected="@(isSelected ? "selected" : null)">
+                    @option.Text
+                </option>
+            }
         </select>
     </div>
 </div>
@@ -43,15 +57,32 @@
 
 <div class="mb-3">
     <label for="Type" class="form-label">Tipo</label>
-    <select name="Type" id="Type" class="form-select app-form-control" asp-items="ViewBag.SubjectTypes">
+    <select name="Type" id="Type" class="form-select app-form-control">
         <option value="">-- Selecciona un tipo --</option>
+        @foreach (var option in subjectTypeOptions)
+        {
+            var isSelected = option.Value == Convert.ToString(Model.Type);
+            <option value="@option.Value" selected="@(isSelected ? "selected" : null)">
+                @option.Text
+            </option>
+        }
     </select>
 </div>
 
 <hr class="my-4" />
 
-<h3 class="dashboard-card-title">Titulaciones asociadas</h3>
-<p class="dashboard-card-text">Registra al menos una titulación, indicando el cuatrimestre y si es libre configuración.</p>
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+    <div>
+        <h3 class="dashboard-card-title mb-1">Titulaciones asociadas</h3>
+        <p class="dashboard-card-text mb-0">
+            Registra una o varias titulaciones, indicando el cuatrimestre y si es libre configuración.
+        </p>
+    </div>
+
+    <button type="button" id="add-degree-program-row" class="btn app-secondary-button">
+        Agregar titulación
+    </button>
+</div>
 
 <div class="table-card mt-3">
     <div class="table-responsive">
@@ -61,25 +92,49 @@
                     <th>Titulación</th>
                     <th>Cuatrimestre</th>
                     <th>Libre configuración</th>
+                    <th class="text-end">Acción</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="degree-program-rows">
                 @for (var i = 0; i < Model.DegreePrograms.Count; i++)
                 {
-                    <tr>
+                    <tr class="degree-program-row">
                         <td>
-                            <select name="DegreePrograms[@i].DegreeProgramId" class="form-select app-form-control" asp-items="ViewBag.DegreePrograms">
+                            <select name="DegreePrograms[@i].DegreeProgramId" class="form-select app-form-control">
                                 <option value="">-- Selecciona una titulación --</option>
+                                @foreach (var option in degreeProgramOptions)
+                                {
+                                    var isSelected = option.Value == Convert.ToString(Model.DegreePrograms[i].DegreeProgramId);
+                                    <option value="@option.Value" selected="@(isSelected ? "selected" : null)">
+                                        @option.Text
+                                    </option>
+                                }
                             </select>
                         </td>
                         <td>
-                            <input name="DegreePrograms[@i].Quadrimester" type="number" min="1" max="20" value="@Model.DegreePrograms[i].Quadrimester" class="form-control app-form-control" />
+                            <input name="DegreePrograms[@i].Quadrimester"
+                                   type="number"
+                                   min="1"
+                                   max="20"
+                                   value="@Model.DegreePrograms[i].Quadrimester"
+                                   class="form-control app-form-control" />
                         </td>
                         <td>
                             <div class="form-check mt-2">
-                                <input name="DegreePrograms[@i].IsFreeConfiguration" type="checkbox" value="true" class="form-check-input" @(Model.DegreePrograms[i].IsFreeConfiguration ? "checked" : "") />
-                                <input name="DegreePrograms[@i].IsFreeConfiguration" type="hidden" value="false" />
+                                <input name="DegreePrograms[@i].IsFreeConfiguration"
+                                       type="hidden"
+                                       value="false" />
+                                <input name="DegreePrograms[@i].IsFreeConfiguration"
+                                       type="checkbox"
+                                       value="true"
+                                       class="form-check-input"
+                                       @(Model.DegreePrograms[i].IsFreeConfiguration ? "checked" : "") />
                             </div>
+                        </td>
+                        <td class="text-end">
+                            <button type="button" class="btn btn-sm app-table-button-danger remove-degree-program-row">
+                                Quitar
+                            </button>
                         </td>
                     </tr>
                 }
@@ -87,3 +142,93 @@
         </table>
     </div>
 </div>
+
+<script type="text/template" id="degree-program-row-template">
+    <tr class="degree-program-row">
+        <td>
+            <select name="DegreePrograms[__index__].DegreeProgramId" class="form-select app-form-control">
+                <option value="">-- Selecciona una titulación --</option>
+                @foreach (var option in degreeProgramOptions)
+                {
+                    <text>
+                        <option value="@option.Value">@option.Text</option>
+                    </text>
+                }
+            </select>
+        </td>
+        <td>
+            <input name="DegreePrograms[__index__].Quadrimester"
+                   type="number"
+                   min="1"
+                   max="20"
+                   value="1"
+                   class="form-control app-form-control" />
+        </td>
+        <td>
+            <div class="form-check mt-2">
+                <input name="DegreePrograms[__index__].IsFreeConfiguration" type="hidden" value="false" />
+                <input name="DegreePrograms[__index__].IsFreeConfiguration"
+                       type="checkbox"
+                       value="true"
+                       class="form-check-input" />
+            </div>
+        </td>
+        <td class="text-end">
+            <button type="button" class="btn btn-sm app-table-button-danger remove-degree-program-row">
+                Quitar
+            </button>
+        </td>
+    </tr>
+</script>
+
+<script>(function () {
+        const rowsContainer = document.getElementById("degree-program-rows");
+        const addButton = document.getElementById("add-degree-program-row");
+        const template = document.getElementById("degree-program-row-template");
+
+        if (!rowsContainer || !addButton || !template) {
+            return;
+        }
+
+        function getNextIndex() {
+            return rowsContainer.querySelectorAll(".degree-program-row").length;
+        }
+
+        function addRow() {
+            const index = getNextIndex();
+            const html = template.innerHTML.replaceAll("__index__", index);
+            rowsContainer.insertAdjacentHTML("beforeend", html);
+        }
+
+        function reindexRows() {
+            const rows = rowsContainer.querySelectorAll(".degree-program-row");
+
+            rows.forEach((row, index) => {
+                const elements = row.querySelectorAll("input, select");
+
+                elements.forEach(element => {
+                    if (element.name) {
+                        element.name = element.name.replace(/DegreePrograms\[\d+\]/g, `DegreePrograms[${index}]`);
+                    }
+                });
+            });
+        }
+
+        addButton.addEventListener("click", addRow);
+
+        rowsContainer.addEventListener("click", function (event) {
+            const button = event.target.closest(".remove-degree-program-row");
+
+            if (!button) {
+                return;
+            }
+
+            const row = button.closest(".degree-program-row");
+            if (!row) {
+                return;
+            }
+
+            row.remove();
+            reindexRows();
+        });
+    })();</script>
