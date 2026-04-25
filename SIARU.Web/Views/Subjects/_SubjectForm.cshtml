@@ -1,0 +1,89 @@
+﻿@model dynamic
+
+<div class="mb-3">
+    <label for="Code" class="form-label">Código</label>
+    <input name="Code" id="Code" value="@Model.Code" class="form-control app-form-control" @(Model is SIARU.Application.DTOs.Subjects.UpdateSubjectDto ? "readonly" : "") />
+</div>
+
+<div class="mb-3">
+    <label for="Name" class="form-label">Nombre</label>
+    <input name="Name" id="Name" value="@Model.Name" class="form-control app-form-control" />
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label for="Course" class="form-label">Curso</label>
+        <input name="Course" id="Course" type="number" value="@Model.Course" class="form-control app-form-control" />
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label for="KnowledgeAreaId" class="form-label">Área de conocimiento</label>
+        <select name="KnowledgeAreaId" id="KnowledgeAreaId" class="form-select app-form-control" asp-items="ViewBag.KnowledgeAreas">
+            <option value="">-- Selecciona un área --</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <label for="TheoreticalCredits" class="form-label">Créditos teóricos</label>
+        <input name="TheoreticalCredits" id="TheoreticalCredits" type="number" step="0.1" value="@Model.TheoreticalCredits" class="form-control app-form-control" />
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <label for="LabCredits" class="form-label">Créditos de laboratorio</label>
+        <input name="LabCredits" id="LabCredits" type="number" step="0.1" value="@Model.LabCredits" class="form-control app-form-control" />
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <label for="AdmissionLimit" class="form-label">Límite de admisión</label>
+        <input name="AdmissionLimit" id="AdmissionLimit" type="number" value="@Model.AdmissionLimit" class="form-control app-form-control" />
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="Type" class="form-label">Tipo</label>
+    <select name="Type" id="Type" class="form-select app-form-control" asp-items="ViewBag.SubjectTypes">
+        <option value="">-- Selecciona un tipo --</option>
+    </select>
+</div>
+
+<hr class="my-4" />
+
+<h3 class="dashboard-card-title">Titulaciones asociadas</h3>
+<p class="dashboard-card-text">Registra al menos una titulación, indicando el cuatrimestre y si es libre configuración.</p>
+
+<div class="table-card mt-3">
+    <div class="table-responsive">
+        <table class="table app-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Titulación</th>
+                    <th>Cuatrimestre</th>
+                    <th>Libre configuración</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.DegreePrograms.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            <select name="DegreePrograms[@i].DegreeProgramId" class="form-select app-form-control" asp-items="ViewBag.DegreePrograms">
+                                <option value="">-- Selecciona una titulación --</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input name="DegreePrograms[@i].Quadrimester" type="number" min="1" max="20" value="@Model.DegreePrograms[i].Quadrimester" class="form-control app-form-control" />
+                        </td>
+                        <td>
+                            <div class="form-check mt-2">
+                                <input name="DegreePrograms[@i].IsFreeConfiguration" type="checkbox" value="true" class="form-check-input" @(Model.DegreePrograms[i].IsFreeConfiguration ? "checked" : "") />
+                                <input name="DegreePrograms[@i].IsFreeConfiguration" type="hidden" value="false" />
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

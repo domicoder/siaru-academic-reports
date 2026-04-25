@@ -35,6 +35,7 @@
     <None Remove="Views\Departments\" />
     <None Remove="Views\KnowledgeAreas\" />
     <None Remove="Views\DegreePrograms\" />
+    <None Remove="Views\Subjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Reports\" />
@@ -45,6 +46,7 @@
     <Folder Include="Views\Departments\" />
     <Folder Include="Views\KnowledgeAreas\" />
     <Folder Include="Views\DegreePrograms\" />
+    <Folder Include="Views\Subjects\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.4" />

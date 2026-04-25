@@ -1,0 +1,27 @@
+﻿@model SIARU.Application.DTOs.Subjects.SubjectDetailDto
+
+@{
+    ViewData["Title"] = "Eliminar asignatura";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Eliminar asignatura</h1>
+    <p class="page-subtitle">Confirma si deseas eliminar esta asignatura del sistema.</p>
+</div>
+
+<div class="form-card">
+    <p class="mb-3">
+        Estás a punto de eliminar la asignatura:
+        <strong>@Model.Code - @Model.Name</strong>
+    </p>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="code" value="@Model.Code" />
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a asp-action="Index" class="btn app-outline-button">Cancelar</a>
+        </div>
+    </form>
+</div>
