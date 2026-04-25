@@ -33,6 +33,7 @@
     <None Remove="ViewModels\Account\" />
     <None Remove="Views\Account\" />
     <None Remove="Views\Departments\" />
+    <None Remove="Views\KnowledgeAreas\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Reports\" />
@@ -41,6 +42,7 @@
     <Folder Include="ViewModels\Account\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Departments\" />
+    <Folder Include="Views\KnowledgeAreas\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.4" />

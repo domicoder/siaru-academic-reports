@@ -14,6 +14,7 @@
     <None Remove="Common\" />
     <None Remove="DTOs\Reports\" />
     <None Remove="DTOs\Departments\" />
+    <None Remove="DTOs\KnowledgeAreas\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
@@ -23,6 +24,7 @@
     <Folder Include="Common\" />
     <Folder Include="DTOs\Reports\" />
     <Folder Include="DTOs\Departments\" />
+    <Folder Include="DTOs\KnowledgeAreas\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIARU.Domain\SIARU.Domain.csproj" />

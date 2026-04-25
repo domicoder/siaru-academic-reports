@@ -12,12 +12,10 @@
 <body class="app-body">
     <header>
         <nav class="navbar navbar-expand-lg app-navbar shadow-sm">
-            <div class="container-fluid app-shell-container">
+            <div class="container-fluid app-shell-container navbar-container">
                 <a class="navbar-brand app-brand" asp-controller="Home" asp-action="Index">
-                    <span class="app-brand-badge">SI</span>
                     <span class="app-brand-text">
                         <span class="app-brand-title">SIARU</span>
-                        <span class="app-brand-subtitle">Sistema Académico Universitario</span>
                     </span>
                 </a>
 
@@ -118,11 +116,52 @@
     </main>
 
     <footer class="app-footer">
-        <div class="container-fluid app-shell-container">
-            <div class="app-footer-content">
-                <span>SIARU</span>
-                <span class="app-footer-separator">•</span>
-                <span>Sistema Integrado de Información Académica y Reportes Universitarios</span>
+        <div class="footer-container">
+            <div class="footer-top">
+
+                <div class="footer-col brand-col">
+                    <h2 class="footer-logo">SIARU</h2>
+                    <p class="footer-desc">Sistema Integrado de Información Académica y Reportes Universitarios</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">SIARU</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Estructura académica</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Departments">Departamentos</a></li>
+                        <li><a href="/KnowledgeAreas">Área de conocimiento</a></li>
+                        <li><a href="/DegreePrograms">Titulaciones</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Académico</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Asignaturas</a></li>
+                        <li><a href="#">Profesores</a></li>
+                        <li><a href="#">Horarios de consulta</a></li>
+                        <li><a href="#">Imparticiones</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Otros</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Reports">Informes</a></li>
+                        <li><a href="#">Administración</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2026 SIARU. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
